@@ -43,7 +43,7 @@ const CustomHeader = ({ toggleSidebar, handlePerPage, rowsPerPage, handleFilter,
         </Col>
         <Col xl='6' className='d-flex align-items-sm-center justify-content-lg-end justify-content-start flex-lg-nowrap flex-wrap flex-sm-row flex-column pr-lg-1 p-0 mt-lg-0 mt-1'>
           <div className='d-flex align-items-center mb-sm-0 mb-1 mr-1'>
-            <Label className='mb-0' for='search-invoice'>Buscar:</Label>
+            <Label className='mb-0' for='search-invoice'></Label>
             <Input
               id='search-invoice'
               className='ml-50 w-100'
@@ -170,44 +170,50 @@ const UsersList = () => {
       </Card>
 
       <Card>
-        <DataTable
-          noHeader
-          pagination
-          subHeader
-          responsive
-          paginationServer
-          columns={columns}
-          sortIcon={<ChevronDown />}
-          className='react-dataTable'
-          paginationComponent={() => (
-            <ReactPaginate
-            previousLabel={'<'}
-            nextLabel={'>'}
-            pageCount={Math.ceil(store.total / rowsPerPage)} // Verifica que `store.total` esté llegando correctamente
-            activeClassName='active'
-            forcePage={currentPage - 1}
-            onPageChange={handlePageChange}
-            containerClassName={'pagination react-paginate justify-content-center'}
-            pageClassName={'page-item'}
-            pageLinkClassName={'page-link'}
-            previousClassName={'page-item'}
-            previousLinkClassName={'page-link'}
-            nextClassName={'page-item'}
-            nextLinkClassName={'page-link'}
-            disabledClassName={'disabled'}
-          />                 
-          )}
-          data={dataToRender()}
-          subHeaderComponent={
-            <CustomHeader
-              toggleSidebar={toggleSidebar}
-              handlePerPage={handlePerPage}
-              rowsPerPage={rowsPerPage}
-              searchTerm={searchTerm}
-              handleFilter={handleFilter}
-            />
-          }
-        />
+      <DataTable
+  noHeader
+  pagination
+  subHeader
+  responsive
+  paginationServer
+  columns={columns}
+  sortIcon={<ChevronDown />}
+  className='react-dataTable'
+  paginationComponent={() => (
+    <ReactPaginate
+      previousLabel={'<'}
+      nextLabel={'>'}
+      pageCount={Math.ceil(store.total / rowsPerPage)}
+      activeClassName='active'
+      forcePage={currentPage - 1}
+      onPageChange={handlePageChange}
+      containerClassName={'pagination react-paginate justify-content-center'}
+      pageClassName={'page-item'}
+      pageLinkClassName={'page-link'}
+      previousClassName={'page-item'}
+      previousLinkClassName={'page-link'}
+      nextClassName={'page-item'}
+      nextLinkClassName={'page-link'}
+      disabledClassName={'disabled'}
+    />
+  )}
+  data={dataToRender()}
+  subHeaderComponent={
+    <CustomHeader
+      toggleSidebar={toggleSidebar}
+      handlePerPage={handlePerPage}
+      rowsPerPage={rowsPerPage}
+      searchTerm={searchTerm}
+      handleFilter={handleFilter}
+    />
+  }
+  noDataComponent={
+    <div className="no-data-container">
+      No hay registros para mostrar
+    </div>
+  }
+/>
+
       </Card>
 
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />

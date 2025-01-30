@@ -172,3 +172,13 @@
     }
   }
 }
+
+.no-data-container {
+  padding: 19px;
+  margin-top: 19px;
+  text-align: center;
+  background-color: #ffffff; /* Fondo con color suave */
+  color: #000000; /* Texto con color rojo oscuro */
+  border: 1px solid #ffffff; /* Borde rojo claro */
+  border-radius: 4px; /* Bordes redondeados */
+}
